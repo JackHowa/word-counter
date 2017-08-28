@@ -1,34 +1,23 @@
-# Jack
-# Emil
+# input: "hey hay! He"
+# output: ["hey", "hay", "he"]
 
-def word_count_engine(document)
-  # take out the punctuation of the input
-  # splitting the sentences by spaces into array of words
-  # declare an output variable for frequencies and words as an empty
-  wordArray = document.split(" ")
-  cleanedArray = []
-  wordArray.each do |word|
-    cleanedArray << word.gsub(/[[:punct:]]/, '').downcase()
+def cleaned_doc(word_string)
+  word_string.split(" ").map do |word|
+    word.gsub(/[[:punct:]]/, '').downcase()
   end
+end
 
-  # declare new var for ouput with hash
-  # loop through
-    # if word matches an existing word in the hash key
-      # increment its count
-    # elsif
+def word_count_engine(word_string)
 
-
- # counter = {}
-  output = {}
-  cleanedArray.each do |word|
+  outputArray = cleaned_doc(word_string).map do |word|
     if output.keys.include?(word)
       output[word] += 1
     else
       output[word] = 1
-
     end
   end
-  outputArray = output.to_a
+
+  puts output
 
   # tuples
   rearrangedOutput = []
@@ -41,7 +30,7 @@ def word_count_engine(document)
 
   finalOutput = []
   sortedArray.each do |pair|
-    finalOutput << [pair[1], pair[0]]
+    finalOutput << [pair[1], pair[0].to_s]
   end
 
   finalOutput
