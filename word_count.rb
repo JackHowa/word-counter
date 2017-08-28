@@ -12,10 +12,10 @@ def word_count_engine(word_string)
   end
 
   sorted_hash = frequencies.sort_by do |word, frequency|
-    [frequency, word]
+    [-frequency, -word]
   end
 
-  sorted_hash.reverse().map do |word, frequency|
+  sorted_hash.map do |word, frequency|
     [word, frequency.to_s]
   end
 end
