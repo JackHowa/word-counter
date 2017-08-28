@@ -1,3 +1,6 @@
+
+
+
 # input: "hey hay! He"
 # output: ["hey", "hay", "he"]
 
@@ -7,7 +10,11 @@ def cleaned_doc(word_string)
   end
 end
 
+
+
 def word_count_engine(word_string)
+  cleaned_doc(word_string)
+
 
   outputArray = cleaned_doc(word_string).map do |word|
     if output.keys.include?(word)
@@ -43,3 +50,7 @@ def word_count_engine(word_string)
   # [["practice"],["perfect"]]
   # [["a", "2"], ["b", "1"]]
 end
+
+input = "Practice makes perfect. you'll only get Perfect by practice. just practice!"
+
+word_count_engine(input)
