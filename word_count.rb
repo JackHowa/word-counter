@@ -1,56 +1,21 @@
-# Jack
-# Emil
+def cleaned_doc(word_string)
+  word_string.split(" ").map do |word|
+    word.gsub(/[[:punct:]]/, '').downcase()
+  end
+end
 
-def word_count_engine(document)
-  # take out the punctuation of the input
-  # splitting the sentences by spaces into array of words
-  # declare an output variable for frequencies and words as an empty
-  wordArray = document.split(" ")
-  cleanedArray = []
-  wordArray.each do |word|
-    cleanedArray << word.gsub(/[[:punct:]]/, '').downcase()
+
+def word_count_engine(word_string)
+  frequencies = Hash.new(0)
+  cleaned_doc(word_string).each do |word|
+      frequencies[word.downcase] += 1
   end
 
-  # declare new var for ouput with hash
-  # loop through
-    # if word matches an existing word in the hash key
-      # increment its count
-    # elsif
-
-
- # counter = {}
-  output = {}
-  cleanedArray.each do |word|
-    if output.keys.include?(word)
-      output[word] += 1
-    else
-      output[word] = 1
-
-    end
-  end
-  outputArray = output.to_a
-
-  # tuples
-  rearrangedOutput = []
-  outputArray.each do |pair|
-    rearrangedOutput << [pair[1], pair[0]]
-  end
-  # [["practice", 3], ["makes", 1], ["perfect", 2], ["youll", 1], ["get", 1], ["by", 1], ["just", 4]]
-
-  sortedArray = rearrangedOutput.sort().reverse()
-
-  finalOutput = []
-  sortedArray.each do |pair|
-    finalOutput << [pair[1], pair[0]]
+  sorted_hash = frequencies.sort_by do |word, frequency|
+    [frequency, word]
   end
 
-  finalOutput
-
-
-
-  # ["a", "b", "a"]
-  #
-
-  # [["practice"],["perfect"]]
-  # [["a", "2"], ["b", "1"]]
+  sorted_hash.reverse().map do |word, frequency|
+    [word, frequency.to_s]
+  end
 end
